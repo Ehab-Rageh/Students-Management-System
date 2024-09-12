@@ -1,0 +1,63 @@
+﻿@{
+    int x = 1;
+}
+@model List<Course>
+<a class="btn btn-primary" asp-action="Create">Add New Course</a>
+@* @if (Context.Session.GetInt32("UserId") is not null)
+{
+    <a class="btn btn-primary" href="/Post/Add">Add New Post</a>
+} *@
+@if (TempData["Alert"] is not null)
+{
+    <div class="alert alert-success">
+        <strong>Success! </strong>@TempData["Alert"]
+    </div>
+}
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Hours</th>
+            <th>Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Course course in Model)
+        {
+            string sem = (course.Semester == 1) ? "first" : "Second";
+            <tr>
+                <th>@(x++)</th>
+                <td>@course.Name</td>
+                @switch (@course.Year)
+                {
+                    case 1:
+                        <td>1st year</td>
+                        break;
+                    case 2:
+                        <td>2nd year</td>
+                        break;
+                    case 3:
+                        <td>3rd year</td>
+                        break;
+                    case 4:
+                        <td>4th year</td>
+                        break;
+                    default:
+                        break;
+                }
+                <td>@sem</td>
+                <td>@course.Hours</td>
+                <td>
+                    <a href="/Course/Details/@course.ID">Details</a> |
+                    <a href="/Course/Edit/@course.ID">Edit</a> |
+                    <a href="/Course/Delete/@course.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@* <a href="/User/showCookies" class="btn btn-outline-success">Cookies</a> *@
+<!--<a href="/Post/Details/Context.Session.GetInt32("UserId")" class="btn btn-outline-success" >Posts</a>-->

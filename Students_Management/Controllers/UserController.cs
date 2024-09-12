@@ -108,7 +108,7 @@ namespace Students_Management.Controllers
 
         public IActionResult Details(int id)
         {
-            User user = dbContext.Users.SingleOrDefault(u => u.ID == id);
+            User? user = dbContext.Users.SingleOrDefault(u => u.ID == id);
             if (user is null) return Content("Invaild Id");
             return View(user);
         }

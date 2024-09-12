@@ -1,9 +1,9 @@
 ﻿@{
     int x = 1;
-    
+
 }
-@model List<User>
-<a class="btn btn-primary" asp-action="Create">Add New account</a>
+@model List<Department>
+<a class="btn btn-primary" asp-action="Create">Add New Department</a>
 @* @if (Context.Session.GetInt32("UserId") is not null)
 {
     <a class="btn btn-primary" href="/Post/Add">Add New Post</a>
@@ -19,26 +19,20 @@
         <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>Head</th>
             <th>Handle</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (User user in Model)
+        @foreach (Department department in Model)
         {
             <tr>
                 <th>@(x++)</th>
-                <td>@user.FName @user.LName</td>
-                <td>@user.Age</td>
-                <td>@user.Email</td>
-                @if (user.Role == 1) {<td>Student</td>}
-                else{<td>Instructor</td>}
+                <td>@department.Name</td>
+                <td>@department.Head</td>
                 <td>
-                    <a href="/User/Details/@user.ID">Details</a> |
-                    <a href="/User/Edit/@user.ID">Edit</a> |
-                    <a href="/User/Delete/@user.ID">Delete</a>
+                    <a href="/Department/Edit/@department.ID">Edit</a> |
+                    <a href="/Department/Delete/@department.ID">Delete</a>
                 </td>
             </tr>
         }
