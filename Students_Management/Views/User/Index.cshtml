@@ -1,0 +1,49 @@
+﻿@{
+    int x = 1;
+    
+}
+@model List<User>
+<a class="btn btn-primary" href="/User/Create">Add New account</a>
+@* @if (Context.Session.GetInt32("UserId") is not null)
+{
+    <a class="btn btn-primary" href="/Post/Add">Add New Post</a>
+} *@
+@if (TempData["Alert"] is not null)
+{
+    <div class="alert alert-success">
+        <strong>Success! </strong>@TempData["Alert"]
+    </div>
+}
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (User user in Model)
+        {
+            int age = (DateTime.Now.Year - user.DateOfBirth.Year);
+            <tr>
+                <th>@(x++)</th>
+                <td>@user.FName @user.LName</td>
+                <td>@age</td>
+                <td>@user.Email</td>
+                @if (user.Role == 1) {<td>Student</td>}
+                else{<td>Instructor</td>}
+                <td>
+                    <a href="/User/Details/@user.ID">Details</a> |
+                    <a href="/User/Edit/@user.ID">Edit</a> |
+                    <a href="/User/Delete/@user.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@* <a href="/User/showCookies" class="btn btn-outline-success">Cookies</a> *@
+<!--<a href="/Post/Details/Context.Session.GetInt32("UserId")" class="btn btn-outline-success" >Posts</a>-->

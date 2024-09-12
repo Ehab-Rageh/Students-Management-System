@@ -1,0 +1,73 @@
+﻿@{
+}
+@model EditedUserVM
+<form action="/User/Edit" method="post">
+    <div class="hidden">
+        <label asp-for="ID" class="visually-hidden"></label>
+        <div class="visually-hidden">
+            <input asp-for="ID" class="form-control" value="@Model.ID">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="FName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+            <input asp-for="FName" class="form-control" value="@Model.FName">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="LName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+            <input asp-for="LName" class="form-control" value="@Model.LName">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="DateOfBirth" class="col-sm-2 col-form-label">Birth Date</label>
+        <div class="col-sm-10">
+            <input asp-for="DateOfBirth" class="form-control" value="@Model.DateOfBirth">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="City" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="City" class="form-control" value="@Model.City">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Street" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Street" class="form-control" value="@Model.Street">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Phone" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Phone" class="form-control" value="@Model.Phone">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Gender" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Gender" class="form-control" value="@Model.Gender">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Year" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Year" class="form-control" value="@Model.Year">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Semester" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Semester" class="form-control" value="@Model.Semester">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Role" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Role" class="form-control" value="@Model.Role">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Edit</button>
+</form>
