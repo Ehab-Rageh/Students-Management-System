@@ -21,6 +21,7 @@
             <th>Year</th>
             <th>Semester</th>
             <th>Hours</th>
+            <th>Department</th>
             <th>Handle</th>
         </tr>
     </thead>
@@ -28,7 +29,8 @@
         @foreach (Course course in Model)
         {
             string sem = (course.Semester == 1) ? "first" : "Second";
-            <tr>
+            string? title = course.Department.Title;
+        <tr>
                 <th>@(x++)</th>
                 <td>@course.Name</td>
                 @switch (@course.Year)
@@ -50,6 +52,7 @@
                 }
                 <td>@sem</td>
                 <td>@course.Hours</td>
+                <td>@title</td>
                 <td>
                     <a href="/Course/Details/@course.ID">Details</a> |
                     <a href="/Course/Edit/@course.ID">Edit</a> |

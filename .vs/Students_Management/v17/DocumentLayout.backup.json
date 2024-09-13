@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|c:\\users\\ehabr\\source\\repos\\students_management\\students_management\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|solutionrelative:students_management\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|c:\\users\\ehabr\\source\\repos\\students_management\\students_management\\views\\course\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|solutionrelative:students_management\\views\\course\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|c:\\users\\ehabr\\source\\repos\\students_management\\students_management\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|solutionrelative:students_management\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|c:\\users\\ehabr\\source\\repos\\students_management\\students_management\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -15,8 +19,8 @@
       "RelativeMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|solutionrelative:students_management\\views\\course\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|c:\\users\\ehabr\\source\\repos\\students_management\\students_management\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|solutionrelative:students_management\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|c:\\users\\ehabr\\source\\repos\\students_management\\students_management\\views\\course\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19807A10-DF86-4DBD-B3B2-B367208FD894}|Students_Management\\Students_Management.csproj|solutionrelative:students_management\\views\\course\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Details.cshtml",
+              "RelativeDocumentMoniker": "Students_Management\\Views\\Course\\Details.cshtml",
+              "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Details.cshtml*",
+              "RelativeToolTip": "Students_Management\\Views\\Course\\Details.cshtml*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-13T21:02:32.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Index.cshtml",
-              "RelativeDocumentMoniker": "Students_Management\\Views\\Course\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Index.cshtml",
-              "RelativeToolTip": "Students_Management\\Views\\Course\\Index.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAewBYAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-12T20:12:55.774Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Create.cshtml",
-              "RelativeDocumentMoniker": "Students_Management\\Views\\Course\\Create.cshtml",
-              "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Create.cshtml",
-              "RelativeToolTip": "Students_Management\\Views\\Course\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-12T20:09:34.533Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "Students_Management\\Controllers\\CourseController.cs",
               "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Controllers\\CourseController.cs",
               "RelativeToolTip": "Students_Management\\Controllers\\CourseController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAswGYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T19:38:23.99Z",
+              "WhenOpened": "2024-09-13T20:18:26.366Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Course.cs",
-              "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Models\\Course.cs",
-              "RelativeDocumentMoniker": "Students_Management\\Models\\Course.cs",
-              "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Models\\Course.cs",
-              "RelativeToolTip": "Students_Management\\Models\\Course.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T19:36:57.705Z",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Index.cshtml",
+              "RelativeDocumentMoniker": "Students_Management\\Views\\Course\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Index.cshtml",
+              "RelativeToolTip": "Students_Management\\Views\\Course\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-13T20:16:30.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Create.cshtml",
+              "RelativeDocumentMoniker": "Students_Management\\Views\\Course\\Create.cshtml",
+              "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Create.cshtml",
+              "RelativeToolTip": "Students_Management\\Views\\Course\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-13T20:14:07.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Students_Management\\Views\\Course\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\ehabr\\source\\repos\\Students_Management\\Students_Management\\Views\\Course\\Edit.cshtml",
+              "RelativeToolTip": "Students_Management\\Views\\Course\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-13T20:13:49.062Z",
               "EditorCaption": ""
             }
           ]

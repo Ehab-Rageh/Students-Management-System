@@ -32,7 +32,8 @@ namespace Students_Management.Controllers
                 Department department = new Department()
                 {
                     Name = departmentvm.Name,
-                    Head = departmentvm.Head
+                    Head = departmentvm.Head,
+                    Title = departmentvm.Title
                 };
                 dbContext.Add(department);
                 dbContext.SaveChanges();
@@ -65,7 +66,8 @@ namespace Students_Management.Controllers
             {
                 ID = id,
                 Name = department.Name,
-                Head = department.Head
+                Head = department.Head,
+                Title = department.Title
             };
             return View(departmentVM);
         }
@@ -76,6 +78,7 @@ namespace Students_Management.Controllers
             if (department is null) return Content("Invaild Id");
             department.Name = model.Name;
             department.Head = model.Head;
+            department.Title = model.Title;
             dbContext.SaveChanges();
             TempData["Alert"] = "Department Updated Successfully...!";
             return RedirectToAction("Index");

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Students_Management.Models;
 using Students_Management.ViewModels;
 
@@ -13,7 +14,7 @@ namespace Students_Management.Controllers
         }
         public IActionResult Index()
         {
-            List<Course> courses = dbContext.Courses.ToList();
+            List<Course> courses = dbContext.Courses.Include(x=>x.Department).ToList();
             return View(courses);
         }
 
@@ -35,8 +36,11 @@ namespace Students_Management.Controllers
                     Description = coursevm.Description,
                     Hours = coursevm.Hours,
                     Year = coursevm.Year,
-                    Semester = coursevm.Semester
+                    Semester = coursevm.Semester,
+                    DepartmentID = coursevm.DepartmentID,
+                    Department = dbContext.Departments.SingleOrDefault(x=>x.ID == coursevm.DepartmentID)
                 };
+                if (course.Department is null) return Content("Rong Department");
                 dbContext.Add(course);
                 dbContext.SaveChanges();
                 TempData["Alert"] = "Course Created Successfully...!";
@@ -72,6 +76,7 @@ namespace Students_Management.Controllers
                 Hours = course.Hours,
                 Year = course.Year,
                 Semester = course.Semester
+
             };
             return View(courseVM);
         }
@@ -86,10 +91,21 @@ namespace Students_Management.Controllers
                 course.Hours = model.Hours;
                 course.Year = model.Year;
                 course.Semester = model.Semester;
+                course.DepartmentID = model.DepartmentID;
+                course.Department = dbContext.Departments.SingleOrDefault(x => x.ID == model.DepartmentID);
             }
             dbContext.SaveChanges();
             TempData["Alert"] = "Course Updated Successfully...!";
             return RedirectToAction("Index");
+        }
+
+        //======================< Details >======================
+
+        public IActionResult Details(int id)
+        {
+            Course? course = dbContext.Courses.Include(x => x.Department).SingleOrDefault(x => x.ID == id);
+            if (course is null) return Content("Invaild Id");
+            return View(course);
         }
     }
 }

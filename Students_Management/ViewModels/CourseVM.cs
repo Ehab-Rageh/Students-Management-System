@@ -20,5 +20,7 @@ namespace Students_Management.ViewModels
 
         [Required(ErrorMessage = "*")]
         public int Semester { get; set; }
+        [Required(ErrorMessage = "*")]
+        public int DepartmentID { get; set; }
     }
 }

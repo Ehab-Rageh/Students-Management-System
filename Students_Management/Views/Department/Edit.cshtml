@@ -15,6 +15,12 @@
         </div>
     </div>
     <div class="mb-3 row">
+        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" class="form-control" value="@Model.Title">
+        </div>
+    </div>
+    <div class="mb-3 row">
         <label asp-for="Head" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <input asp-for="Head" class="form-control" value="@Model.Head">

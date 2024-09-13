@@ -1,0 +1,71 @@
+﻿@{
+@model Course
+    string year = null!;
+    switch (Model.Year)
+    {
+        case 1:
+            year = "1st year";
+            break;
+        case 2:
+            year = "2nd year";
+            break;
+        case 3:
+            year = "3rd year";
+            break;
+        case 4:
+            year = "4th year";
+            break;
+        default:
+            break;
+    }
+    string sem = (Model.Semester == 1) ? "first" : "Second";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Course Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">Name:</dt>
+                            <dd class="col-sm-9">@Model.Name</dd>
+
+                            <dt class="col-sm-3">Description:</dt>
+                            <dd class="col-sm-9">@Model.Description</dd>
+
+                            <dt class="col-sm-3">Hours:</dt>
+                            <dd class="col-sm-9">@Model.Hours</dd>
+
+                            <dt class="col-sm-3">Year:</dt>
+                            <dd class="col-sm-9">@year</dd>
+
+                            <dt class="col-sm-3">Semester:</dt>
+                            <dd class="col-sm-9">@sem</dd>
+
+                            <dt class="col-sm-3">Department:</dt>
+                            <dd class="col-sm-9">@Model.Department.Name</dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="index" class="btn btn-secondary">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
