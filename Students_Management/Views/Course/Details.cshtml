@@ -28,38 +28,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Details</title>
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    @* <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> *@
 </head>
 <body>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="card">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header bg-info text-white">
                         <h4>Course Details</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body bg-white text-black ">
                         <dl class="row">
-                            <dt class="col-sm-3">Name:</dt>
+                            <dt class="col-sm-3 fw-bold">Name:</dt>
                             <dd class="col-sm-9">@Model.Name</dd>
 
-                            <dt class="col-sm-3">Description:</dt>
+                            <dt class="col-sm-3 fw-bold">Description:</dt>
                             <dd class="col-sm-9">@Model.Description</dd>
 
-                            <dt class="col-sm-3">Hours:</dt>
+                            <dt class="col-sm-3 fw-bold">Hours:</dt>
                             <dd class="col-sm-9">@Model.Hours</dd>
 
-                            <dt class="col-sm-3">Year:</dt>
+                            <dt class="col-sm-3 fw-bold">Year:</dt>
                             <dd class="col-sm-9">@year</dd>
 
-                            <dt class="col-sm-3">Semester:</dt>
+                            <dt class="col-sm-3 fw-bold">Semester:</dt>
                             <dd class="col-sm-9">@sem</dd>
 
-                            <dt class="col-sm-3">Department:</dt>
+                            <dt class="col-sm-3 fw-bold">Department:</dt>
                             <dd class="col-sm-9">@Model.Department.Name</dd>
                         </dl>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer bg-light">
                         <a asp-action="index" class="btn btn-secondary">Back</a>
                     </div>
                 </div>

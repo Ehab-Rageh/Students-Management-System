@@ -17,8 +17,8 @@ namespace Students_Management.Models
         public int? Year { get; set; } = 0;
         public int? Semester { get; set; } = 0;
         public int Role { get; set; }
-        public List<Student_Course>? Courses { get; set; }  
-        public List<Department_Instructor>? Departments { get; set; }
+        public ICollection<Student_Course>? Courses { get; set; }  = new List<Student_Course>();
+        public ICollection<Department_Instructor>? Departments { get; set; } = new List<Department_Instructor>();
         public int Age
         {
             get

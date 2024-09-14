@@ -2,7 +2,10 @@
     int x = 1;
 }
 @model List<Course>
-<a class="btn btn-primary" asp-action="Create">Add New Course</a>
+<a class="btn btn-outline-info mb-2" asp-action="Create">
+    <i class="bi bi-file-earmark-plus-fill"></i>
+    Add New Course
+</a>
 @* @if (Context.Session.GetInt32("UserId") is not null)
 {
     <a class="btn btn-primary" href="/Post/Add">Add New Post</a>
@@ -13,8 +16,8 @@
         <strong>Success! </strong>@TempData["Alert"]
     </div>
 }
-<table class="table table-hover table-striped">
-    <thead>
+<table class="table table-hover table-striped ">
+    <thead class="table-light">
         <tr>
             <th>#</th>
             <th>Name</th>
@@ -54,9 +57,9 @@
                 <td>@course.Hours</td>
                 <td>@title</td>
                 <td>
-                    <a href="/Course/Details/@course.ID">Details</a> |
-                    <a href="/Course/Edit/@course.ID">Edit</a> |
-                    <a href="/Course/Delete/@course.ID">Delete</a>
+                    <a href="/Course/Details/@course.ID"><i class="bi bi-info-circle-fill link-info me-2"></i></a>
+                    <a href="/Course/Edit/@course.ID"><i class="bi bi-pencil-fill link-success me-2"></i></a>
+                    <a href="/Course/Delete/@course.ID"><i class="bi bi-trash3-fill link-danger me2"></i></a>
                 </td>
             </tr>
         }

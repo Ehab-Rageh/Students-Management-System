@@ -1,6 +1,7 @@
-﻿@{
+﻿@model EditedUserVM
+@{
+    bool student = (Model.Role == 1) ? true : false;
 }
-@model EditedUserVM
 <form action="/User/Edit" method="post">
     <div class="hidden">
         <label asp-for="ID" class="visually-hidden"></label>
@@ -44,28 +45,50 @@
             <input asp-for="Phone" class="form-control" value="@Model.Phone">
         </div>
     </div>
-    <div class="mb-3 row">
-        <label asp-for="Gender" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-            <input asp-for="Gender" class="form-control" value="@Model.Gender">
+    @if (student)
+    {
+        <div class="mb-3 row">
+            <label asp-for="Year" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select class="form-select" asp-for="Year" >
+                    <option value="1">First Year</option>
+                    <option value="2">Seconed Year</option>
+                    <option value="3">Third Year</option>
+                    <option value="4">Fourth Year</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="mb-3 row">
+            <label asp-for="Semester" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select class="form-select" asp-for="Semester">
+                    <option value="1">First</option>
+                    <option value="2">Seconed</option>
+                </select>
+            </div>
+        </div>
+    }
+    <div class="col-12">
+        <label asp-for="Role" class="col-sm-2 col-form-label">Role</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Role" id="Student" value="1">
+            <label class="form-check-label" for="Student">Student</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Role" id="Instructor" value="2">
+            <label class="form-check-label" for="Instructor">Instructor</label>
         </div>
     </div>
-    <div class="mb-3 row">
-        <label asp-for="Year" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-            <input asp-for="Year" class="form-control" value="@Model.Year">
+    <div class="col-12">
+        <label asp-for="Gender" class="col-sm-2 col-form-label">Gender</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Gender" id="male" value="Male">
+            <label class="form-check-label" for="male">Male</label>
         </div>
-    </div>
-    <div class="mb-3 row">
-        <label asp-for="Semester" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-            <input asp-for="Semester" class="form-control" value="@Model.Semester">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label asp-for="Role" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-            <input asp-for="Role" class="form-control" value="@Model.Role">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Gender" id="female" value="Female">
+            <label class="form-check-label" for="female">Female</label>
         </div>
     </div>
 

@@ -3,7 +3,10 @@
     
 }
 @model List<User>
-<a class="btn btn-primary" asp-action="Create">Add New account</a>
+<a class="btn btn-outline-info mb-2" asp-action="Create">
+    <i class="bi bi-person-fill-add"></i>
+    Add New account
+    </a>
 @* @if (Context.Session.GetInt32("UserId") is not null)
 {
     <a class="btn btn-primary" href="/Post/Add">Add New Post</a>
@@ -15,7 +18,7 @@
     </div>
 }
 <table class="table table-hover table-striped">
-    <thead>
+    <thead class="table-light">
         <tr>
             <th>#</th>
             <th>Name</th>
@@ -36,9 +39,9 @@
                 @if (user.Role == 1) {<td>Student</td>}
                 else{<td>Instructor</td>}
                 <td>
-                    <a href="/User/Details/@user.ID">Details</a> |
-                    <a href="/User/Edit/@user.ID">Edit</a> |
-                    <a href="/User/Delete/@user.ID">Delete</a>
+                    <a href="/User/Details/@user.ID"><i class="bi bi-info-circle-fill link-info me-2"></i></a>
+                    <a href="/User/Edit/@user.ID"><i class="bi bi-pencil-fill link-success me-2"></i></a>
+                    <a href="/User/Delete/@user.ID"><i class="bi bi-trash3-fill link-danger me-2"></i></a>
                 </td>
             </tr>
         }

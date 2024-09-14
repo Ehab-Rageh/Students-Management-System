@@ -99,6 +99,23 @@ namespace Students_Management.Controllers
                 user.Semester = model.Semester;
                 user.Role = model.Role;
             }
+            if (user.Role == 1)
+            {
+                var courses = dbContext.Courses.Where(x => x.Year == user.Year);
+                foreach (var course in courses)
+                {
+                    Student_Course student_ = new()
+                    {
+                        UserId = user.ID,
+                        User = user,
+                        CourseId = course.ID,
+                        Course = course
+                    };
+                    dbContext.Student_Courses.Add(student_);
+                }
+                dbContext.SaveChanges();
+                user.Courses = dbContext.Student_Courses.Where(x => x.UserId == user.ID).ToList();
+            }
             dbContext.SaveChanges();
             TempData["Alert"] = "User Updated Successfully...!";
             return RedirectToAction("Index");

@@ -135,3 +135,4 @@ C:\Users\ehabr\source\repos\Students_Management\Students_Management\bin\Debug\ne
 C:\Users\ehabr\source\repos\Students_Management\Students_Management\obj\Debug\net8.0\Students_Management.csproj.AssemblyReference.cache
 C:\Users\ehabr\source\repos\Students_Management\Students_Management\obj\Debug\net8.0\Students.9198B7DC.Up2Date
 C:\Users\ehabr\source\repos\Students_Management\Students_Management\obj\Debug\net8.0\Students_Management.sourcelink.json
+C:\Users\ehabr\source\repos\Students_Management\Students_Management\bin\Debug\net8.0\libman.json
