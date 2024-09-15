@@ -23,7 +23,14 @@ namespace Students_Management.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            List<Department> departments = dbContext.Departments.ToList();
+            List<User> instructors = dbContext.Users.Where(x=>x.Role == 2).ToList();
+            CourseVM courseVM = new CourseVM()
+            {
+                departments = departments,
+                instructors = instructors
+            };
+            return View(courseVM);
         }
         [HttpPost]
         public IActionResult Create(CourseVM coursevm)
@@ -38,9 +45,12 @@ namespace Students_Management.Controllers
                     Year = coursevm.Year,
                     Semester = coursevm.Semester,
                     DepartmentID = coursevm.DepartmentID,
-                    Department = dbContext.Departments.SingleOrDefault(x=>x.ID == coursevm.DepartmentID)
+                    Department = dbContext.Departments.SingleOrDefault(x => x.ID == coursevm.DepartmentID),
+                    InstructorID = coursevm.InstructorID,
+                    Instructor = dbContext.Users.SingleOrDefault(x => x.ID == coursevm.InstructorID && x.Role == 2)
                 };
-                if (course.Department is null) return Content("Rong Department");
+                if (course.Department is null) return Content("Wrong Department");
+                if (course.Instructor is null) return Content("Wrong Instructor");
                 dbContext.Add(course);
                 dbContext.SaveChanges();
                 TempData["Alert"] = "Course Created Successfully...!";
@@ -66,8 +76,10 @@ namespace Students_Management.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            List<User>? instructors = dbContext.Users.Include(x => x.Department).Where(x => x.Role == 2).ToList();
             Course? course = dbContext.Courses.SingleOrDefault(x => x.ID == id);
             if (course is null) return Content("Invaild Id");
+            if (instructors is null) return Content("Invaild instructors");
             CourseVM courseVM = new()
             {
                 ID = id,
@@ -75,8 +87,10 @@ namespace Students_Management.Controllers
                 Description= course.Description,
                 Hours = course.Hours,
                 Year = course.Year,
-                Semester = course.Semester
-
+                Semester = course.Semester,
+                DepartmentID = course.DepartmentID,
+                InstructorID = course.InstructorID,
+                instructors = instructors
             };
             return View(courseVM);
         }
@@ -93,6 +107,8 @@ namespace Students_Management.Controllers
                 course.Semester = model.Semester;
                 course.DepartmentID = model.DepartmentID;
                 course.Department = dbContext.Departments.SingleOrDefault(x => x.ID == model.DepartmentID);
+                course.InstructorID = model.InstructorID;
+                course.Instructor = dbContext.Users.SingleOrDefault(x => x.Role == 2 && x.ID == model.InstructorID);
             }
             dbContext.SaveChanges();
             TempData["Alert"] = "Course Updated Successfully...!";
@@ -103,7 +119,7 @@ namespace Students_Management.Controllers
 
         public IActionResult Details(int id)
         {
-            Course? course = dbContext.Courses.Include(x => x.Department).SingleOrDefault(x => x.ID == id);
+            Course? course = dbContext.Courses.Include(x => x.Department).Include(x=>x.Instructor).SingleOrDefault(x => x.ID == id);
             if (course is null) return Content("Invaild Id");
             return View(course);
         }

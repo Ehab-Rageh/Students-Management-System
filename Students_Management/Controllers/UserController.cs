@@ -22,7 +22,12 @@ namespace Students_Management.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            List<Department> departments = dbContext.Departments.ToList();
+            UserVM userVM = new UserVM()
+            {
+                departments = departments
+            };
+            return View(userVM);
         }
         [HttpPost]
         public IActionResult Create(UserVM uservm)
@@ -38,8 +43,29 @@ namespace Students_Management.Controllers
                     Password = uservm.Password,
                     Gender = uservm.Gender,
                     Role = uservm.Role,
+                    DepartmentID = uservm.DepartmentID,
+                    Year = uservm.Year,
+                    Semester = uservm.Semester
                 };
+                user.Department = dbContext.Departments.SingleOrDefault(x => x.ID == user.DepartmentID);
                 dbContext.Add(user);
+                if (user.Role == 1)
+                {
+                    var courses = dbContext.Courses.Where(x => x.Year == user.Year && x.DepartmentID == user.DepartmentID);
+                    foreach (var course in courses)
+                    {
+                        Student_Course student_ = new()
+                        {
+                            UserId = user.ID,
+                            User = user,
+                            CourseId = course.ID,
+                            Course = course
+                        };
+                        dbContext.Add(student_);
+                    }
+                    dbContext.SaveChanges();
+                    user.Student_Courses = dbContext.Student_Courses.Where(x => x.UserId == user.ID).ToList();
+                }
                 dbContext.SaveChanges();
                 TempData["Alert"] = "User Created Successfully...!";
                 return RedirectToAction("Index");
@@ -53,6 +79,8 @@ namespace Students_Management.Controllers
         {
             User? user = dbContext.Users.SingleOrDefault(x => x.ID == id);
             if (user is null) return Content("Invaild Id");
+            List<Student_Course> _Course = dbContext.Student_Courses.Where(x=>x.UserId == user.ID).ToList();
+            dbContext.Student_Courses.RemoveRange(_Course);
             dbContext.Users.Remove(user);
             dbContext.SaveChanges();
             TempData["Alert"] = "User Deleted Successfully...!";
@@ -72,13 +100,7 @@ namespace Students_Management.Controllers
                 FName = user.FName,
                 LName = user.LName,
                 DateOfBirth = user.DateOfBirth,
-                City = user.City,
-                Street = user.Street,
-                Phone = user.Phone,
                 Gender = user.Gender,
-                Year = (int)user.Year,
-                Semester = (int)user.Semester,
-                Role = user.Role
             };
             return View(userVM);
         }
@@ -97,24 +119,6 @@ namespace Students_Management.Controllers
                 user.Gender = model.Gender;
                 user.Year = model.Year;
                 user.Semester = model.Semester;
-                user.Role = model.Role;
-            }
-            if (user.Role == 1)
-            {
-                var courses = dbContext.Courses.Where(x => x.Year == user.Year);
-                foreach (var course in courses)
-                {
-                    Student_Course student_ = new()
-                    {
-                        UserId = user.ID,
-                        User = user,
-                        CourseId = course.ID,
-                        Course = course
-                    };
-                    dbContext.Student_Courses.Add(student_);
-                }
-                dbContext.SaveChanges();
-                user.Courses = dbContext.Student_Courses.Where(x => x.UserId == user.ID).ToList();
             }
             dbContext.SaveChanges();
             TempData["Alert"] = "User Updated Successfully...!";
@@ -129,7 +133,5 @@ namespace Students_Management.Controllers
             if (user is null) return Content("Invaild Id");
             return View(user);
         }
-
-
     }
 }

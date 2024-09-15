@@ -17,14 +17,25 @@ namespace Students_Management.Models
         public int? Year { get; set; } = 0;
         public int? Semester { get; set; } = 0;
         public int Role { get; set; }
-        public ICollection<Student_Course>? Courses { get; set; }  = new List<Student_Course>();
-        public ICollection<Department_Instructor>? Departments { get; set; } = new List<Department_Instructor>();
+        [ForeignKey("Department")]
+        public int? DepartmentID { get; set; }
+        public Department? Department { get; set; }
+        public ICollection<Student_Course>? Student_Courses { get; set; } 
+        public ICollection<Course>? Instractor_Courses { get; set; }
         public int Age
         {
             get
             {
                 int age = DateTime.Now.Year - DateOfBirth.Year;
                 return age;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                string name = $"{FName} {LName}";
+                return name;
             }
         }
     }

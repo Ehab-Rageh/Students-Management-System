@@ -10,6 +10,9 @@ namespace Students_Management.Models
         public int Hours { get; set; }
         public int Year { get; set; }
         public int Semester { get; set; }
+        [ForeignKey("Instructor")]
+        public int? InstructorID { get; set; }
+        public User? Instructor { get; set; }
 
         [ForeignKey("Department")]
         public int? DepartmentID { get; set; }

@@ -6,6 +6,6 @@
         public string Name { get; set; }
         public string Head { get; set; }
         public string? Title { get; set; }
-        public List<Department_Instructor>? Instructors { get; set; }
+        public ICollection<User>? Users { get; set; } = new List<User>();
     }
 }

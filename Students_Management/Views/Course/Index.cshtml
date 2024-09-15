@@ -31,7 +31,7 @@
     <tbody>
         @foreach (Course course in Model)
         {
-            string sem = (course.Semester == 1) ? "first" : "Second";
+            string sem = (course.Semester == 1) ? "1st " : "2nd ";
             string? title = course.Department.Title;
         <tr>
                 <th>@(x++)</th>

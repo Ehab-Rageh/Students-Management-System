@@ -8,7 +8,6 @@ namespace Students_Management.Models
         public DbSet<Course> Courses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student_Course> Student_Courses { get; set; }
-        public DbSet<Department_Instructor> Department_Instructors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -38,6 +38,17 @@
             <input asp-for="Semester" class="form-control" value="@Model.Semester">
         </div>
     </div>
+    <div class="mb-3 row">
+        <label asp-for="InstructorID" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select class="form-select" asp-for="InstructorID">
+                @foreach (User Instructor in Model.instructors)
+                {
+                    <option value="@Instructor.ID">@Instructor.Name (@Instructor.Department.Title)</option>
+                }
+            </select>
+        </div>
+    </div>
     <div class="col-12">
         <label asp-for="DepartmentID" class="col-sm-2 col-form-label">Department</label>
         <div class="form-check">

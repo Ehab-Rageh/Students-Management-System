@@ -18,7 +18,7 @@
         default:
             break;
     }
-    string sem = (Model.Semester == 1) ? "first" : "Second";
+    string sem = (Model.Semester == 1) ? "1st" : "2nd ";
 
 }
 <!DOCTYPE html>
@@ -57,6 +57,9 @@
 
                             <dt class="col-sm-3 fw-bold">Department:</dt>
                             <dd class="col-sm-9">@Model.Department.Name</dd>
+
+                            <dt class="col-sm-3 fw-bold">Instructor:</dt>
+                            <dd class="col-sm-9">@Model.Instructor.Name</dd>
                         </dl>
                     </div>
                     <div class="card-footer bg-light">

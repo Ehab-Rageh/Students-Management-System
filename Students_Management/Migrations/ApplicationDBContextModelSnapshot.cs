@@ -40,6 +40,9 @@ namespace Students_Management.Migrations
                     b.Property<int>("Hours")
                         .HasColumnType("int");
 
+                    b.Property<int?>("InstructorID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,7 +57,9 @@ namespace Students_Management.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Courses");
+                    b.HasIndex("InstructorID");
+
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("Students_Management.Models.Department", b =>
@@ -78,22 +83,7 @@ namespace Students_Management.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Departments");
-                });
-
-            modelBuilder.Entity("Students_Management.Models.Department_Instructor", b =>
-                {
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DepartmentId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Department_Instructors");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("Students_Management.Models.Student_Course", b =>
@@ -111,7 +101,7 @@ namespace Students_Management.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Student_Courses");
+                    b.ToTable("Student_Courses", (string)null);
                 });
 
             modelBuilder.Entity("Students_Management.Models.User", b =>
@@ -127,6 +117,9 @@ namespace Students_Management.Migrations
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("DepartmentID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -165,7 +158,9 @@ namespace Students_Management.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Users");
+                    b.HasIndex("DepartmentID");
+
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Students_Management.Models.Course", b =>
@@ -174,26 +169,13 @@ namespace Students_Management.Migrations
                         .WithMany()
                         .HasForeignKey("DepartmentID");
 
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("Students_Management.Models.Department_Instructor", b =>
-                {
-                    b.HasOne("Students_Management.Models.Department", "Department")
-                        .WithMany("Instructors")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Students_Management.Models.User", "User")
-                        .WithMany("Departments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Students_Management.Models.User", "Instructor")
+                        .WithMany("Instractor_Courses")
+                        .HasForeignKey("InstructorID");
 
                     b.Navigation("Department");
 
-                    b.Navigation("User");
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("Students_Management.Models.Student_Course", b =>
@@ -205,7 +187,7 @@ namespace Students_Management.Migrations
                         .IsRequired();
 
                     b.HasOne("Students_Management.Models.User", "User")
-                        .WithMany("Courses")
+                        .WithMany("Student_Courses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -215,6 +197,15 @@ namespace Students_Management.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Students_Management.Models.User", b =>
+                {
+                    b.HasOne("Students_Management.Models.Department", "Department")
+                        .WithMany("Users")
+                        .HasForeignKey("DepartmentID");
+
+                    b.Navigation("Department");
+                });
+
             modelBuilder.Entity("Students_Management.Models.Course", b =>
                 {
                     b.Navigation("Students");
@@ -222,14 +213,14 @@ namespace Students_Management.Migrations
 
             modelBuilder.Entity("Students_Management.Models.Department", b =>
                 {
-                    b.Navigation("Instructors");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Students_Management.Models.User", b =>
                 {
-                    b.Navigation("Courses");
+                    b.Navigation("Instractor_Courses");
 
-                    b.Navigation("Departments");
+                    b.Navigation("Student_Courses");
                 });
 #pragma warning restore 612, 618
         }
