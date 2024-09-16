@@ -1,12 +1,13 @@
-﻿@{
-    int x = 1;
-    
-}
+﻿
 @model List<User>
+@{
+    int x = 1;
+
+}
 <a class="btn btn-outline-info mb-2" asp-action="Create">
     <i class="bi bi-person-fill-add"></i>
     Add New account
-    </a>
+</a>
 @* @if (Context.Session.GetInt32("UserId") is not null)
 {
     <a class="btn btn-primary" href="/Post/Add">Add New Post</a>
@@ -31,6 +32,7 @@
     <tbody>
         @foreach (User user in Model)
         {
+            string details_Url = (user.Role == 1) ? $"/User/Student_Details/{user.ID}" : $"/User/Instructor_Details/{user.ID}";
             <tr>
                 <th>@(x++)</th>
                 <td>@user.FName @user.LName</td>
@@ -39,7 +41,7 @@
                 @if (user.Role == 1) {<td>Student</td>}
                 else{<td>Instructor</td>}
                 <td>
-                    <a href="/User/Details/@user.ID"><i class="bi bi-info-circle-fill link-info me-2"></i></a>
+                    <a href=@details_Url><i class="bi bi-info-circle-fill link-info me-2"></i></a>
                     <a href="/User/Edit/@user.ID"><i class="bi bi-pencil-fill link-success me-2"></i></a>
                     <a href="/User/Delete/@user.ID"><i class="bi bi-trash3-fill link-danger me-2"></i></a>
                 </td>

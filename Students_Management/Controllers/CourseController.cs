@@ -33,6 +33,7 @@ namespace Students_Management.Controllers
             return View(courseVM);
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Create(CourseVM coursevm)
         {
             if (ModelState.IsValid)
@@ -56,7 +57,7 @@ namespace Students_Management.Controllers
                 TempData["Alert"] = "Course Created Successfully...!";
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(coursevm);
         }
 
         //======================< Deletion >======================
@@ -95,6 +96,7 @@ namespace Students_Management.Controllers
             return View(courseVM);
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Edit(CourseVM model)
         {
             Course? course = dbContext.Courses.SingleOrDefault(x => x.ID == model.ID);

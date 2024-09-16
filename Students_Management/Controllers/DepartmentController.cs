@@ -25,6 +25,7 @@ namespace Students_Management.Controllers
             return View();
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Create(DepartmentVM departmentvm)
         {
             if (ModelState.IsValid)
@@ -40,7 +41,7 @@ namespace Students_Management.Controllers
                 TempData["Alert"] = "Department Created Successfully...!";
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(departmentvm);
         }
 
         //======================< Deletion >======================
@@ -72,6 +73,7 @@ namespace Students_Management.Controllers
             return View(departmentVM);
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Edit(DepartmentVM model)
         {
             Department? department = dbContext.Departments.SingleOrDefault(x => x.ID == model.ID);

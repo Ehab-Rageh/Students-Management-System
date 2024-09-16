@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Students_Management.Models;
 using Students_Management.ViewModels;
 
@@ -30,6 +31,7 @@ namespace Students_Management.Controllers
             return View(userVM);
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Create(UserVM uservm)
         {
             if (ModelState.IsValid)
@@ -65,12 +67,13 @@ namespace Students_Management.Controllers
                     }
                     dbContext.SaveChanges();
                     user.Student_Courses = dbContext.Student_Courses.Where(x => x.UserId == user.ID).ToList();
+
                 }
                 dbContext.SaveChanges();
                 TempData["Alert"] = "User Created Successfully...!";
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(uservm);
         }
 
         //======================< Deletion >======================
@@ -79,7 +82,7 @@ namespace Students_Management.Controllers
         {
             User? user = dbContext.Users.SingleOrDefault(x => x.ID == id);
             if (user is null) return Content("Invaild Id");
-            List<Student_Course> _Course = dbContext.Student_Courses.Where(x=>x.UserId == user.ID).ToList();
+            List<Student_Course> _Course = dbContext.Student_Courses.Where(x => x.UserId == user.ID).ToList();
             dbContext.Student_Courses.RemoveRange(_Course);
             dbContext.Users.Remove(user);
             dbContext.SaveChanges();
@@ -105,6 +108,7 @@ namespace Students_Management.Controllers
             return View(userVM);
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Edit(EditedUserVM model)
         {
             User? user = dbContext.Users.SingleOrDefault(x => x.ID == model.ID);
@@ -127,9 +131,17 @@ namespace Students_Management.Controllers
 
         //======================< Details >======================
 
-        public IActionResult Details(int id)
+        public IActionResult Student_Details(int id)
         {
-            User? user = dbContext.Users.SingleOrDefault(u => u.ID == id);
+            List<Student_Course>? student = dbContext.Student_Courses.Include(x => x.Course).Include(x => x.User).Include(x => x.Course.Instructor).ToList();
+            student = student.Where(x => x.UserId == id).ToList();
+            if (student is null) return Content("Invaild Id");
+            return View(student);
+        }
+        public IActionResult Instructor_Details(int id)
+        {
+            User? user = dbContext.Users.SingleOrDefault(x=>x.ID == id);
+            user.Instractor_Courses = dbContext.Courses.Where(x=>x.InstructorID == id).ToList();
             if (user is null) return Content("Invaild Id");
             return View(user);
         }
