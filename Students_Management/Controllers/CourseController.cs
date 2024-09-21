@@ -96,7 +96,6 @@ namespace Students_Management.Controllers
             return View(courseVM);
         }
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public IActionResult Edit(CourseVM model)
         {
             Course? course = dbContext.Courses.SingleOrDefault(x => x.ID == model.ID);

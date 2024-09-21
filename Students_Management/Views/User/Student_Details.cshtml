@@ -77,6 +77,20 @@
 
                                 <div class="row">
                                     <div class="col-md-5 col-5">
+                                        <i class="fas fa-graduation-cap text-sky"></i>
+                                        <strong class="margin-10px-left text-sky">Department:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7 text-white">
+                                        <p>@Model[0].Course.Department.Name</p>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
                                         <i class="fas fa-map-marker-alt text-green"></i>
                                         <strong class="margin-10px-left text-green">Address:</strong>
                                     </div>
@@ -131,7 +145,7 @@
                                         <th class=" text-black">Name</th>
                                         <th class=" text-black">Instructor</th>
                                         <th class=" text-black">Hours</th>
-                                        <th class=" text-black">Grade</th>
+                                        <th class=" text-black">Grade/60</th>
                                     </tr>
                                 </thead>
                                 <tbody>

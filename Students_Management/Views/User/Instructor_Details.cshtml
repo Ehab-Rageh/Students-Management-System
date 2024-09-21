@@ -59,6 +59,20 @@
 
                                 <div class="row">
                                     <div class="col-md-5 col-5">
+                                        <i class="fas fa-graduation-cap text-sky"></i>
+                                        <strong class="margin-10px-left text-sky">Department:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7 text-white">
+                                        <p>@Model.Department.Name</p>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
                                         <i class="fas fa-map-marker-alt text-green"></i>
                                         <strong class="margin-10px-left text-green">Address:</strong>
                                     </div>
@@ -112,6 +126,7 @@
                                         <th class=" text-black">#</th>
                                         <th class=" text-black">Name</th>
                                         <th class=" text-black">Hours</th>
+                                        <th class=" text-black">Info</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -121,6 +136,9 @@
                                             <th>@(x++)</th>
                                             <td>@course.Name</td>
                                             <td>@course.Hours</td>
+                                            <td>
+                                                <a href="/User/Courses/@course.ID"><i class="bi bi-info-circle-fill link-black me-2"></i></a>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>

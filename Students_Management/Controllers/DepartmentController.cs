@@ -73,7 +73,6 @@ namespace Students_Management.Controllers
             return View(departmentVM);
         }
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public IActionResult Edit(DepartmentVM model)
         {
             Department? department = dbContext.Departments.SingleOrDefault(x => x.ID == model.ID);

@@ -14,7 +14,7 @@ namespace Students_Management.Controllers
         }
         public IActionResult Index()
         {
-            List<User> users = dbContext.Users.ToList();
+            List<User> users = dbContext.Users.Where(x => x.Role != 3).ToList();
             return View(users);
         }
 
@@ -104,11 +104,13 @@ namespace Students_Management.Controllers
                 LName = user.LName,
                 DateOfBirth = user.DateOfBirth,
                 Gender = user.Gender,
+                City = user.City,
+                Street = user.Street,
+                Phone = user.Phone,
             };
             return View(userVM);
         }
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public IActionResult Edit(EditedUserVM model)
         {
             User? user = dbContext.Users.SingleOrDefault(x => x.ID == model.ID);
@@ -121,8 +123,6 @@ namespace Students_Management.Controllers
                 user.Street = model.Street;
                 user.Phone = model.Phone;
                 user.Gender = model.Gender;
-                user.Year = model.Year;
-                user.Semester = model.Semester;
             }
             dbContext.SaveChanges();
             TempData["Alert"] = "User Updated Successfully...!";
@@ -133,17 +133,46 @@ namespace Students_Management.Controllers
 
         public IActionResult Student_Details(int id)
         {
-            List<Student_Course>? student = dbContext.Student_Courses.Include(x => x.Course).Include(x => x.User).Include(x => x.Course.Instructor).ToList();
+            List<Student_Course>? student = dbContext.Student_Courses.Include(x => x.Course).Include(x => x.Course.Department).Include(x => x.User).Include(x => x.Course.Instructor).ToList();
             student = student.Where(x => x.UserId == id).ToList();
             if (student is null) return Content("Invaild Id");
             return View(student);
         }
         public IActionResult Instructor_Details(int id)
         {
-            User? user = dbContext.Users.SingleOrDefault(x=>x.ID == id);
-            user.Instractor_Courses = dbContext.Courses.Where(x=>x.InstructorID == id).ToList();
+            User? user = dbContext.Users.SingleOrDefault(x => x.ID == id);
+            user.Instractor_Courses = dbContext.Courses.Include(x => x.Department).Where(x => x.InstructorID == id).ToList();
             if (user is null) return Content("Invaild Id");
             return View(user);
+        }
+
+        //======================< Courses Details >======================
+
+        public IActionResult Courses(int id)
+        {
+            List<Student_Course>? courses = dbContext.Student_Courses.Include(x=>x.Course).Include(x=>x.User).Where(x=>x.CourseId == id).ToList();
+            if (courses is null) { return Content("Invalid ID"); }
+            if (courses.Count == 0) { return Content("there is no students"); }
+            return View(courses);
+        }
+
+        //======================< Courses Edit >======================
+        
+        [HttpGet, Route("/User/Edit_Courses/{userid}/{courseid}")]
+        public IActionResult Edit_Courses([FromRoute]int userid, [FromRoute] int courseid)
+        {
+            Student_Course? student = dbContext.Student_Courses.Include(x => x.User).SingleOrDefault(x => x.UserId == userid && x.CourseId == courseid);
+            if (student is null) { return Content("Invalid ID"); }
+            return View(student);
+        }
+        [HttpPost]
+        public IActionResult Edit_Courses(Student_Course model)
+        {
+            Student_Course? student = dbContext.Student_Courses.Include(x => x.User).SingleOrDefault(x => x.UserId == model.UserId && x.CourseId == model.CourseId);
+            if (student is null) { return Content("Invalid ID"); }
+            student.grade = model.grade;
+            dbContext.SaveChanges();
+            return RedirectToAction(nameof(Courses), new {id = student.CourseId });
         }
     }
 }

@@ -35,7 +35,7 @@
             string details_Url = (user.Role == 1) ? $"/User/Student_Details/{user.ID}" : $"/User/Instructor_Details/{user.ID}";
             <tr>
                 <th>@(x++)</th>
-                <td>@user.FName @user.LName</td>
+                <td>@user.Name</td>
                 <td>@user.Age</td>
                 <td>@user.Email</td>
                 @if (user.Role == 1) {<td>Student</td>}
